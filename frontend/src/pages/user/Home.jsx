@@ -233,15 +233,15 @@ export default function Home() {
             </section>
 
             {/* Distinct closing feature, separated from the footer */}
-            <section className="border-t border-[#F6F7FB] bg-[#3657E8] dark:border-white/10 dark:bg-[#3657E8]">
+            <section className="border-t border-[#E7EAF0] bg-[#F6F7FB] dark:border-white/10 dark:bg-[#111827]">
                 <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
                     <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-center">
                         <div className="max-w-2xl">
-                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white dark:text-white">KIVO is growing</p>
+                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#3657E8] dark:text-[#C8F169]">KIVO is growing</p>
                             <h2 className="mt-3 font-[Manrope] text-3xl font-extrabold tracking-[-0.045em] text-[#111827] dark:text-white sm:text-4xl">More of your digital world.<br className="hidden sm:block" /> One destination.</h2>
-                            <p className="mt-4 max-w-xl text-sm leading-6 text-[#667085] dark:text-white/75">We’re building a broader way to access digital products and services. Explore what’s available today.</p>
+                            <p className="mt-4 max-w-xl text-sm leading-6 text-[#667085] dark:text-white/70">We’re building a broader way to access digital products and services. Explore what’s available today.</p>
                         </div>
-                        <button type="button" onClick={() => goToSearch("digital products")} className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-lg bg-[#3657E8] px-5 py-3.5 text-sm font-bold text-white transition hover:bg-[#2948D4] sm:self-auto">
+                        <button type="button" onClick={() => goToSearch("digital products")} className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-lg bg-[#3657E8] px-5 py-3.5 text-sm font-bold text-white transition hover:bg-[#3657E8] sm:self-auto">
                             Explore KIVO <ArrowUpRight size={16} />
                         </button>
                     </div>
