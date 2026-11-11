@@ -231,7 +231,7 @@ const NavbarDropdown = ({ isOpen, onClose }) => {
 
             {!pathname.startsWith("/checkout") && (
                 <>
-                    <div className="hidden sm:flex justify-center space-x-10 py-4">
+                    <div className="hidden sm:flex items-center justify-start gap-8 border-t border-[#EEF0F4] py-3 dark:border-white/10">
                         {desktopMenus.map((menu) => {
                             const Icon = menu.icon;
                             const hasDropdown = !!menu.data;
@@ -240,7 +240,7 @@ const NavbarDropdown = ({ isOpen, onClose }) => {
                                 <button
                                     key={menu.id}
                                     onClick={() => toggleMenu(menu)}
-                                    className={`flex items-center space-x-2 font-semibold cursor-pointer hover:text-blue-400 ${activeMenu === menu.id
+                                    className={`flex items-center gap-2 text-sm font-semibold cursor-pointer transition-colors hover:text-[#3657E8] dark:hover:text-[#A9B8FF] ${activeMenu === menu.id
                                         ? "text-blue-400"
                                         : "text-gray-700 dark:text-gray-200"
                                         }`}
