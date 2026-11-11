@@ -58,12 +58,12 @@ const Header = ({ showSearch }) => {
                 {showSearhBarInMobile && (
                     <div ref={mobileSearchRef} className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 p-3 md:hidden">
                         <div className="w-full gap-4 px-4 py-2 rounded-full border border-gray-300 dark:border-gray-500 flex items-center focus-within:border-blue-500">
-                            <Search className="h-5 w-5 text-gray-500" />
+                            <Search className="h-5 w-5 shrink-0 text-[#7A8496]" />
                             <input
                                 autoFocus
                                 type="text"
                                 placeholder="Search brands, gift cards & games"
-                                className="w-full outline-none dark:placeholder:text-gray-500 font-medium dark:text-white"
+                                className="w-full bg-transparent outline-none text-sm text-[#111827] placeholder:text-[#98A2B3] dark:text-white dark:placeholder:text-[#8290A5]"
                                 value={querry}
                                 onChange={(e) => setQuerry(e.target.value)}
                                 onKeyDown={handleKeyDown}
@@ -73,16 +73,16 @@ const Header = ({ showSearch }) => {
                     </div>
                 )}
 
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className=" flex items-center justify-between h-16">
+                <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+                    <div className="flex h-[68px] items-center justify-between gap-5">
                         {/* Logo */}
                         <div className="flex items-center gap-2 space-x-2">
                             <TextAlignStart strokeWidth={2} className="flex sm:hidden text-black dark:text-white" onClick={() => setSidebarOpen(true)} />
                             <img src={isDark ? KivoWordmarkWhite : KivoWordmark} alt="KIVO" className="h-7 md:h-8 w-auto object-contain" />
                         </div>
 
-                        <div className="hidden md:flex flex-1 max-w-2xl mx-8">
-                            <div className="w-full px-4 py-2 rounded-full border border-gray-300 dark:border-gray-500 flex items-center focus-within:border-blue-500">
+                        <div className="hidden md:flex min-w-0 flex-1 max-w-[720px] mx-4 lg:mx-10">
+                            <div className="w-full h-11 px-4 rounded-full border border-[#D9DDE7] bg-[#F8F9FC] flex items-center transition focus-within:border-[#3657E8] focus-within:ring-4 focus-within:ring-[#3657E8]/10 dark:border-[#344054] dark:bg-[#1B2536]">
                                 <input
                                     type="text"
                                     placeholder="Search brands, gift cards & games"
