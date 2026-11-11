@@ -115,7 +115,14 @@ const PORT = Number(process.env.PORT) || 8001;
 
 mongoose.set("strictQuery", true);
 
-mongoose.connect(process.env.MONGO_URI, {
+const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI;
+
+if (!mongoUri) {
+    console.error("MongoDB configuration error: define MONGO_URI (or MONGODB_URI) in backend/.env.local");
+    process.exit(1);
+}
+
+mongoose.connect(mongoUri, {
     serverSelectionTimeoutMS: 5000
 })
     .then(async () => {
