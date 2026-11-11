@@ -2,10 +2,11 @@ const jwt = require("jsonwebtoken");
 const { Admin } = require("../models/admin.model");
 const { generateAccessToken } = require("../../utils/generateToken");
 
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
 const COOKIE_CLEAR_OPTIONS = {
     httpOnly: true,
-    secure: true,
-    sameSite: "none"
+    secure: IS_PRODUCTION,
+    sameSite: IS_PRODUCTION ? "none" : "lax"
 };
 
 const verifyAdmin = async (req, res, next) => {
@@ -61,8 +62,8 @@ const verifyAdmin = async (req, res, next) => {
 
         res.cookie("admin_access", newAccess, {
             httpOnly: true,
-            secure: true,
-            sameSite: "none",
+            secure: IS_PRODUCTION,
+            sameSite: IS_PRODUCTION ? "none" : "lax",
             maxAge: 60 * 60 * 1000,
         });
 
