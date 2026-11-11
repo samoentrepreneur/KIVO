@@ -141,38 +141,60 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Category navigation */}
-            <section className="border-y border-[#E7E9EF] bg-[#F6F7FB] dark:border-[#344054] dark:bg-[#151F2F]">
-                <div className="mx-auto max-w-[1440px] px-5 py-10 sm:px-8 lg:px-12 lg:py-14">
-                    <div className="mb-7 flex items-end justify-between gap-4">
-                        <div>
-                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#3657E8] dark:text-[#A9B8FF]">Find your next essential</p>
-                            <h2 className="mt-1.5 font-[Manrope] text-2xl font-extrabold tracking-[-0.035em] text-[#111827] dark:text-white sm:text-3xl">Explore the marketplace</h2>
+            {/* Visual marketplace discovery */}
+            <section className="overflow-hidden bg-[#111827] text-white dark:bg-[#0D1422]">
+                <div className="mx-auto max-w-[1440px] px-5 py-14 sm:px-8 lg:px-12 lg:py-[76px]">
+                    <div className="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+                        <div className="max-w-2xl">
+                            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#C8F169]">Find what you came for</p>
+                            <h2 className="mt-3 font-[Manrope] text-3xl font-extrabold tracking-[-0.045em] text-white sm:text-4xl">A marketplace built around what you need.</h2>
                         </div>
-                        <button type="button" onClick={() => goToSearch("digital products")} className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-[#3657E8] transition hover:gap-2 dark:text-[#A9B8FF]">
-                            All services <ChevronRight size={16} />
+                        <button type="button" onClick={() => goToSearch("digital products")} className="inline-flex w-fit items-center gap-2 border-b border-[#C8F169]/60 pb-1 text-sm font-semibold text-[#C8F169] transition hover:gap-3">
+                            Explore everything <ArrowUpRight size={16} />
                         </button>
                     </div>
 
-                    <div className="grid overflow-hidden border-y border-[#DDE1EA] dark:border-[#344054] sm:grid-cols-2 lg:grid-cols-5">
-                        {categories.map(({ name, detail, icon: Icon, query: categoryQuery }, index) => (
-                            <button
-                                key={name}
-                                type="button"
-                                onClick={() => goToSearch(categoryQuery)}
-                                className="group relative flex min-h-[104px] items-center gap-4 border-b border-[#DDE1EA] bg-transparent px-3 py-5 text-left transition hover:bg-white sm:px-5 lg:min-h-[142px] lg:flex-col lg:items-start lg:justify-between lg:border-b-0 lg:border-r lg:py-6 dark:border-[#344054] dark:hover:bg-[#1B2536] last:border-r-0"
-                            >
-                                <span className="flex w-full items-center justify-between">
-                                    <span className="font-[Manrope] text-xs font-bold tracking-[0.12em] text-[#98A2B3] dark:text-[#7F8DA3]">0{index + 1}</span>
-                                    <Icon size={20} strokeWidth={1.7} className="text-[#3657E8] transition-transform group-hover:-translate-y-0.5 dark:text-[#A9B8FF]" />
-                                </span>
-                                <span className="min-w-0 flex-1 lg:flex-none">
-                                    <span className="block font-[Manrope] text-base font-extrabold tracking-[-0.02em] text-[#111827] dark:text-white">{name}</span>
-                                    <span className="mt-1 block text-xs text-[#7A8496] dark:text-[#A8B3C5]">{detail}</span>
-                                </span>
-                                <ArrowUpRight size={16} className="shrink-0 text-[#3657E8] transition group-hover:translate-x-1 group-hover:-translate-y-1 dark:text-[#A9B8FF]" />
-                            </button>
-                        ))}
+                    <div className="grid gap-4 lg:grid-cols-3">
+                        <button type="button" onClick={() => goToSearch("gift cards")} className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl bg-[#26365A] text-left sm:min-h-[320px]">
+                            <img src={AmazonBanner} alt="Gift cards" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" />
+                            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#080E19]/95 via-[#080E19]/20 to-transparent" />
+                            <span className="absolute left-6 top-6 rounded-full border border-white/25 bg-black/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">01 / Digital value</span>
+                            <span className="absolute bottom-6 left-6 right-6">
+                                <span className="block font-[Manrope] text-2xl font-extrabold tracking-[-0.03em] sm:text-3xl">Gift cards</span>
+                                <span className="mt-2 flex items-center gap-2 text-sm font-medium text-white/80">Give yourself more choice <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></span>
+                            </span>
+                        </button>
+
+                        <button type="button" onClick={() => goToSearch("gaming")} className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl bg-[#26365A] text-left sm:min-h-[320px]">
+                            <img src={StreamBanner} alt="Gaming and entertainment" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" />
+                            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#080E19]/95 via-[#080E19]/25 to-transparent" />
+                            <span className="absolute left-6 top-6 rounded-full border border-white/25 bg-black/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">02 / Play & enjoy</span>
+                            <span className="absolute bottom-6 left-6 right-6">
+                                <span className="block font-[Manrope] text-2xl font-extrabold tracking-[-0.03em] sm:text-3xl">Gaming & subscriptions</span>
+                                <span className="mt-2 flex items-center gap-2 text-sm font-medium text-white/80">Top up, stream and play <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></span>
+                            </span>
+                        </button>
+
+                        <button type="button" onClick={() => goToSearch("digital payments")} className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl bg-[#26365A] text-left sm:min-h-[320px]">
+                            <img src={EpayBanner} alt="Digital payment services" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" />
+                            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#080E19]/95 via-[#080E19]/20 to-transparent" />
+                            <span className="absolute left-6 top-6 rounded-full border border-white/25 bg-black/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">03 / Everyday digital</span>
+                            <span className="absolute bottom-6 left-6 right-6">
+                                <span className="block font-[Manrope] text-2xl font-extrabold tracking-[-0.03em] sm:text-3xl">Payment services</span>
+                                <span className="mt-2 flex items-center gap-2 text-sm font-medium text-white/80">Explore digital payment options <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></span>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                        <button type="button" onClick={() => goToSearch("mobile top up")} className="group flex items-center justify-between rounded-xl border border-white/12 bg-white/[0.045] px-5 py-4 text-left transition hover:border-[#C8F169]/50 hover:bg-white/[0.08]">
+                            <span className="flex items-center gap-3"><Smartphone size={19} className="text-[#C8F169]" /><span><span className="block text-sm font-bold text-white">Mobile top-ups</span><span className="mt-1 block text-xs text-white/55">Stay connected wherever you are</span></span></span>
+                            <ArrowUpRight size={17} className="text-[#C8F169] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                        </button>
+                        <button type="button" onClick={() => goToSearch("subscriptions")} className="group flex items-center justify-between rounded-xl border border-white/12 bg-white/[0.045] px-5 py-4 text-left transition hover:border-[#C8F169]/50 hover:bg-white/[0.08]">
+                            <span className="flex items-center gap-3"><Tv size={19} className="text-[#C8F169]" /><span><span className="block text-sm font-bold text-white">Subscriptions</span><span className="mt-1 block text-xs text-white/55">Access the services you use every day</span></span></span>
+                            <ArrowUpRight size={17} className="text-[#C8F169] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                        </button>
                     </div>
                 </div>
             </section>
