@@ -145,7 +145,7 @@ export default function Home() {
                     <div className="grid gap-4 lg:grid-cols-3">
                         <button type="button" onClick={() => goToSearch("gift cards")} className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl bg-[#26365A] text-left sm:min-h-[320px]">
                             <img src={AmazonBanner} alt="Gift cards" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" />
-                            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#080E19]/95 via-[#080E19]/20 to-transparent" />
+                            <div className="absolute inset-0 -z-10 bg-[#111827]/55" />
                             <span className="absolute left-6 top-6 rounded-full border border-white/25 bg-black/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">01 / Digital value</span>
                             <span className="absolute bottom-6 left-6 right-6">
                                 <span className="block font-[Manrope] text-2xl font-extrabold tracking-[-0.03em] sm:text-3xl">Gift cards</span>
@@ -155,7 +155,7 @@ export default function Home() {
 
                         <button type="button" onClick={() => goToSearch("gaming")} className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl bg-[#26365A] text-left sm:min-h-[320px]">
                             <img src={StreamBanner} alt="Gaming and entertainment" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" />
-                            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#080E19]/95 via-[#080E19]/25 to-transparent" />
+                            <div className="absolute inset-0 -z-10 bg-[#111827]/55" />
                             <span className="absolute left-6 top-6 rounded-full border border-white/25 bg-black/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">02 / Play & enjoy</span>
                             <span className="absolute bottom-6 left-6 right-6">
                                 <span className="block font-[Manrope] text-2xl font-extrabold tracking-[-0.03em] sm:text-3xl">Gaming & subscriptions</span>
@@ -165,7 +165,7 @@ export default function Home() {
 
                         <button type="button" onClick={() => goToSearch("digital payments")} className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl bg-[#26365A] text-left sm:min-h-[320px]">
                             <img src={EpayBanner} alt="Digital payment services" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" />
-                            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#080E19]/95 via-[#080E19]/20 to-transparent" />
+                            <div className="absolute inset-0 -z-10 bg-[#111827]/55" />
                             <span className="absolute left-6 top-6 rounded-full border border-white/25 bg-black/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">03 / Everyday digital</span>
                             <span className="absolute bottom-6 left-6 right-6">
                                 <span className="block font-[Manrope] text-2xl font-extrabold tracking-[-0.03em] sm:text-3xl">Payment services</span>
