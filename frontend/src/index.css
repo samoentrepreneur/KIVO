@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --kivo-blue: #3657E8;
+  --kivo-blue-hover: #2948D4;
+  --kivo-lime: #C8F169;
+  --kivo-ink: #111827;
+  --kivo-muted: #667085;
+  --kivo-bg: #F6F7FB;
+  --kivo-surface: #FFFFFF;
+  --kivo-border: #E5E7EB;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--kivo-ink);
+  background: var(--kivo-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: none;
+}
+
+html { min-height: 100%; scroll-behavior: smooth; }
+body { min-width: 320px; min-height: 100vh; margin: 0; background: var(--kivo-bg); }
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+h1, h2, h3, h4, h5, h6 { font-family: "Manrope", "Inter", sans-serif; }
+a { color: inherit; }
+
+.dark {
+  color-scheme: dark;
+  --kivo-bg: #111827;
+  --kivo-surface: #1B2536;
+  --kivo-border: #344054;
+  --kivo-ink: #F9FAFB;
+  --kivo-muted: #A8B3C5;
+}
+
+::selection { background: var(--kivo-lime); color: var(--kivo-ink); }
+:focus-visible { outline: 2px solid var(--kivo-blue); outline-offset: 2px; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
