@@ -69,18 +69,18 @@ export default function Home() {
             <section className="bg-white dark:bg-[#111827]">
                 <div className="mx-auto grid max-w-[1440px] gap-8 px-5 pb-12 pt-10 sm:px-8 sm:pb-16 sm:pt-14 lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:gap-12 lg:px-12 lg:pb-20 lg:pt-16">
                     <div className="max-w-[590px]">
-                        <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.2em] text-[#3657E8] dark:text-[#A9B8FF]">
+                        <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.2em] text-white dark:text-white">
                             THE DIGITAL MARKETPLACE
                         </p>
                         <h1 className="font-[Manrope] text-[2.65rem] font-extrabold leading-[1.04] tracking-[-0.055em] text-[#111827] dark:text-white sm:text-5xl lg:text-[4.15rem]">
                             Your next digital essential
-                            <span className="text-[#3657E8] dark:text-[#A9B8FF]"> starts here.</span>
+                            <span className="text-white dark:text-white"> starts here.</span>
                         </h1>
-                        <p className="mt-6 max-w-[470px] text-[15px] leading-7 text-[#667085] dark:text-[#A8B3C5] sm:text-base">
+                        <p className="mt-6 max-w-[470px] text-[15px] leading-7 text-[#667085] dark:text-white/70 sm:text-base">
                             Gift cards, game credits, subscriptions and everyday digital services. Find what you need, all in one place.
                         </p>
 
-                        <form onSubmit={submitSearch} role="search" className="mt-8 flex h-[58px] max-w-[510px] items-center rounded-xl border border-[#D9DDE7] bg-white p-1.5 transition focus-within:border-[#3657E8] focus-within:ring-4 focus-within:ring-[#3657E8]/10 dark:border-[#344054] dark:bg-[#1B2536]">
+                        <form onSubmit={submitSearch} role="search" className="mt-8 flex h-[58px] max-w-[510px] items-center rounded-xl border border-[#D9DDE7] bg-white p-1.5 transition focus-within:border-[#3657E8] focus-within:ring-4 focus-within:ring-[#3657E8]/10 dark:border-white/10 dark:bg-[#111827]">
                             <Search size={19} className="ml-3 shrink-0 text-[#8A93A5]" />
                             <input
                                 value={query}
@@ -94,16 +94,16 @@ export default function Home() {
                             </button>
                         </form>
 
-                        <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-[#667085] dark:text-[#A8B3C5]">
-                            <span className="inline-flex items-center gap-1.5"><ShieldCheck size={14} className="text-[#3657E8] dark:text-[#C8F169]" /> Clear order tracking</span>
-                            <span className="inline-flex items-center gap-1.5"><Zap size={14} className="text-[#3657E8] dark:text-[#C8F169]" /> Convenient digital access</span>
+                        <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-[#667085] dark:text-white/70">
+                            <span className="inline-flex items-center gap-1.5"><ShieldCheck size={14} className="text-white dark:text-white" /> Clear order tracking</span>
+                            <span className="inline-flex items-center gap-1.5"><Zap size={14} className="text-white dark:text-white" /> Convenient digital access</span>
                         </div>
                     </div>
 
                     {/* Product-led image composition using existing KIVO assets */}
                     <div className="relative min-w-0">
                         <div className="grid grid-cols-[1.15fr_.85fr] grid-rows-[170px_150px] gap-3 sm:grid-rows-[230px_190px] lg:grid-rows-[250px_205px]">
-                            <button type="button" onClick={() => goToSearch("gift cards")} className="group relative row-span-2 overflow-hidden rounded-2xl bg-[#E9EDF8] text-left">
+                            <button type="button" onClick={() => goToSearch("gift cards")} className="group relative row-span-2 overflow-hidden rounded-2xl bg-[#F6F7FB] text-left">
                                 <img src={AmazonBanner} alt="Gift cards" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#111827]/80 via-[#111827]/10 to-transparent" />
                                 <div className="absolute bottom-0 left-0 p-5 text-white sm:p-7">
@@ -119,7 +119,7 @@ export default function Home() {
                                 <span className="absolute bottom-4 left-4 font-[Manrope] text-base font-extrabold text-white sm:bottom-5 sm:left-5 sm:text-lg">Digital payments <ArrowUpRight size={14} className="ml-1 inline" /></span>
                             </button>
 
-                            <button type="button" onClick={() => goToSearch("streaming")} className="group relative overflow-hidden rounded-2xl bg-[#DCE2F2] text-left">
+                            <button type="button" onClick={() => goToSearch("streaming")} className="group relative overflow-hidden rounded-2xl bg-[#F6F7FB] text-left">
                                 <img src={StreamBanner} alt="Streaming subscriptions" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#111827]/75 to-transparent" />
                                 <span className="absolute bottom-4 left-4 font-[Manrope] text-base font-extrabold text-white sm:bottom-5 sm:left-5 sm:text-lg">Subscriptions <ArrowUpRight size={14} className="ml-1 inline" /></span>
@@ -130,7 +130,7 @@ export default function Home() {
             </section>
 
             {/* Visual marketplace discovery */}
-            <section className="overflow-hidden bg-[#111827] text-white dark:bg-[#0D1422]">
+            <section className="overflow-hidden bg-[#111827] text-white dark:bg-[#111827]">
                 <div className="mx-auto max-w-[1440px] px-5 py-14 sm:px-8 lg:px-12 lg:py-[76px]">
                     <div className="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
                         <div className="max-w-2xl">
@@ -143,7 +143,7 @@ export default function Home() {
                     </div>
 
                     <div className="grid gap-4 lg:grid-cols-3">
-                        <button type="button" onClick={() => goToSearch("gift cards")} className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl bg-[#26365A] text-left sm:min-h-[320px]">
+                        <button type="button" onClick={() => goToSearch("gift cards")} className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl bg-[#111827] text-left sm:min-h-[320px]">
                             <img src={AmazonBanner} alt="Gift cards" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" />
                             <div className="absolute inset-0 -z-10 bg-[#111827]/55" />
                             <span className="absolute left-6 top-6 rounded-full border border-white/25 bg-black/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">01 / Digital value</span>
@@ -153,7 +153,7 @@ export default function Home() {
                             </span>
                         </button>
 
-                        <button type="button" onClick={() => goToSearch("gaming")} className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl bg-[#26365A] text-left sm:min-h-[320px]">
+                        <button type="button" onClick={() => goToSearch("gaming")} className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl bg-[#111827] text-left sm:min-h-[320px]">
                             <img src={StreamBanner} alt="Gaming and entertainment" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" />
                             <div className="absolute inset-0 -z-10 bg-[#111827]/55" />
                             <span className="absolute left-6 top-6 rounded-full border border-white/25 bg-black/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">02 / Play & enjoy</span>
@@ -163,7 +163,7 @@ export default function Home() {
                             </span>
                         </button>
 
-                        <button type="button" onClick={() => goToSearch("digital payments")} className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl bg-[#26365A] text-left sm:min-h-[320px]">
+                        <button type="button" onClick={() => goToSearch("digital payments")} className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl bg-[#111827] text-left sm:min-h-[320px]">
                             <img src={EpayBanner} alt="Digital payment services" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" />
                             <div className="absolute inset-0 -z-10 bg-[#111827]/55" />
                             <span className="absolute left-6 top-6 rounded-full border border-white/25 bg-black/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">03 / Everyday digital</span>
@@ -191,20 +191,20 @@ export default function Home() {
             <section className="mx-auto max-w-[1440px] px-5 py-14 sm:px-8 lg:px-12 lg:py-20">
                 <div className="mb-8 flex items-end justify-between">
                     <div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#3657E8] dark:text-[#A9B8FF]">Discover something new</p>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white dark:text-white">Discover something new</p>
                         <h2 className="mt-1.5 font-[Manrope] text-2xl font-extrabold tracking-[-0.035em] text-[#111827] dark:text-white sm:text-3xl">Made for your digital life.</h2>
                     </div>
                 </div>
 
                 <div className="grid gap-4 lg:grid-cols-2">
                     {spotlights.map((item) => (
-                        <article key={item.eyebrow} className={`group relative isolate flex min-h-[290px] overflow-hidden rounded-2xl ${item.theme === "dark" ? "bg-[#111827] text-white" : "bg-[#E8ECF8] text-[#111827]"}`}>
+                        <article key={item.eyebrow} className={`group relative isolate flex min-h-[290px] overflow-hidden rounded-2xl ${item.theme === "dark" ? "bg-[#111827] text-white" : "bg-[#F6F7FB] text-[#111827]"}`}>
                             <img src={item.image} alt={item.imageAlt} className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" />
                             <div className={`absolute inset-0 -z-10 ${item.theme === "dark" ? "bg-gradient-to-r from-[#111827]/95 via-[#111827]/65 to-[#111827]/5" : "bg-gradient-to-r from-white/95 via-white/75 to-white/10"}`} />
                             <div className="flex max-w-[360px] flex-col items-start justify-center p-7 sm:p-9">
                                 <p className={`text-[10px] font-bold tracking-[0.18em] ${item.theme === "dark" ? "text-[#C8F169]" : "text-[#3657E8]"}`}>{item.eyebrow}</p>
                                 <h3 className="mt-3 font-[Manrope] text-2xl font-extrabold leading-[1.12] tracking-[-0.04em] sm:text-[2rem]">{item.title}</h3>
-                                <p className={`mt-3 text-sm leading-6 ${item.theme === "dark" ? "text-white/70" : "text-[#586174]"}`}>{item.copy}</p>
+                                <p className={`mt-3 text-sm leading-6 ${item.theme === "dark" ? "text-white/70" : "text-[#667085]"}`}>{item.copy}</p>
                                 <button type="button" onClick={() => goToSearch(item.query)} className={`mt-6 inline-flex items-center gap-2 border-b pb-1 text-sm font-bold transition-all hover:gap-3 ${item.theme === "dark" ? "border-[#C8F169] text-[#C8F169]" : "border-[#3657E8] text-[#3657E8]"}`}>
                                     {item.action} <ArrowUpRight size={15} />
                                 </button>
@@ -215,31 +215,31 @@ export default function Home() {
             </section>
 
             {/* Service principles */}
-            <section className="border-y border-[#E7E9EF] bg-white dark:border-[#344054] dark:bg-[#1B2536]">
+            <section className="border-y border-[#E7E9EF] bg-white dark:border-white/10 dark:bg-[#111827]">
                 <div className="mx-auto grid max-w-[1440px] gap-8 px-5 py-10 sm:grid-cols-3 sm:px-8 lg:px-12 lg:py-12">
                     <div className="flex items-start gap-3">
-                        <ShieldCheck className="mt-0.5 shrink-0 text-[#3657E8] dark:text-[#A9B8FF]" size={21} />
-                        <div><h3 className="font-[Manrope] text-sm font-extrabold">A clear way to shop</h3><p className="mt-1 text-xs leading-5 text-[#7A8496] dark:text-[#A8B3C5]">Straightforward product discovery and order information.</p></div>
+                        <ShieldCheck className="mt-0.5 shrink-0 text-white dark:text-white" size={21} />
+                        <div><h3 className="font-[Manrope] text-sm font-extrabold">A clear way to shop</h3><p className="mt-1 text-xs leading-5 text-[#7A8496] dark:text-white/70">Straightforward product discovery and order information.</p></div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <Zap className="mt-0.5 shrink-0 text-[#3657E8] dark:text-[#A9B8FF]" size={21} />
-                        <div><h3 className="font-[Manrope] text-sm font-extrabold">Digital, without the detours</h3><p className="mt-1 text-xs leading-5 text-[#7A8496] dark:text-[#A8B3C5]">A growing range of digital products and services in one destination.</p></div>
+                        <Zap className="mt-0.5 shrink-0 text-white dark:text-white" size={21} />
+                        <div><h3 className="font-[Manrope] text-sm font-extrabold">Digital, without the detours</h3><p className="mt-1 text-xs leading-5 text-[#7A8496] dark:text-white/70">A growing range of digital products and services in one destination.</p></div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <Headphones className="mt-0.5 shrink-0 text-[#3657E8] dark:text-[#A9B8FF]" size={21} />
-                        <div><h3 className="font-[Manrope] text-sm font-extrabold">Support that stays close</h3><p className="mt-1 text-xs leading-5 text-[#7A8496] dark:text-[#A8B3C5]">Help is available when you need assistance with your experience.</p></div>
+                        <Headphones className="mt-0.5 shrink-0 text-white dark:text-white" size={21} />
+                        <div><h3 className="font-[Manrope] text-sm font-extrabold">Support that stays close</h3><p className="mt-1 text-xs leading-5 text-[#7A8496] dark:text-white/70">Help is available when you need assistance with your experience.</p></div>
                     </div>
                 </div>
             </section>
 
             {/* Distinct closing feature, separated from the footer */}
-            <section className="border-t border-[#DCE2F0] bg-[#E9EDFF] dark:border-[#344054] dark:bg-[#1D2A42]">
+            <section className="border-t border-[#F6F7FB] bg-[#3657E8] dark:border-white/10 dark:bg-[#3657E8]">
                 <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
                     <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-center">
                         <div className="max-w-2xl">
-                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#3657E8] dark:text-[#C8F169]">KIVO is growing</p>
+                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white dark:text-white">KIVO is growing</p>
                             <h2 className="mt-3 font-[Manrope] text-3xl font-extrabold tracking-[-0.045em] text-[#111827] dark:text-white sm:text-4xl">More of your digital world.<br className="hidden sm:block" /> One destination.</h2>
-                            <p className="mt-4 max-w-xl text-sm leading-6 text-[#586174] dark:text-[#C0CAD9]">We’re building a broader way to access digital products and services. Explore what’s available today.</p>
+                            <p className="mt-4 max-w-xl text-sm leading-6 text-[#667085] dark:text-white/75">We’re building a broader way to access digital products and services. Explore what’s available today.</p>
                         </div>
                         <button type="button" onClick={() => goToSearch("digital products")} className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-lg bg-[#3657E8] px-5 py-3.5 text-sm font-bold text-white transition hover:bg-[#2948D4] sm:self-auto">
                             Explore KIVO <ArrowUpRight size={16} />
