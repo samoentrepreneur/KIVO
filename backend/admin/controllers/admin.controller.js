@@ -13,11 +13,12 @@ const passwordResetSuccessTemplate = require("../../utils/emailTemplate/resetPas
 const { default: mongoose } = require("mongoose");
 const { Advertisement } = require("../models/ad.model.js");
 
-// ✅ OPTIONS COOKIES POUR CROSS-SITE (VERCEL + RENDER)
+// Same-host HTTP development (VPS IP) uses Lax cookies; HTTPS production uses cross-site cookies.
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
 const COOKIE_OPTIONS = {
     httpOnly: true,
-    secure: true,
-    sameSite: "none",
+    secure: IS_PRODUCTION,
+    sameSite: IS_PRODUCTION ? "none" : "lax",
 };
 
 const generateOtp = () => Math.floor(100000 + Math.random() * 900000).toString();
