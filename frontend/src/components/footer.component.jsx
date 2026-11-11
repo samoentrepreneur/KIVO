@@ -81,7 +81,7 @@ export default function Footer() {
             <img src={Playstore} alt="" className="h-7 w-7 object-contain" />
             <span><span className="block text-[10px] text-[#8E9AAF]">GET THE APP</span><span className="mt-0.5 block text-sm font-semibold">Google Play</span></span>
             <ArrowUpRight size={16} className="ml-2 text-[#C8F169]" />
-          </a>
+          </div>
         </div>
 
         <div className="flex flex-col gap-3 pt-6 text-xs text-[#8390A5] sm:flex-row sm:items-center sm:justify-between">
