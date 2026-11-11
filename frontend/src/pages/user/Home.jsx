@@ -8,7 +8,6 @@ import {
     Tv,
     Smartphone,
     CreditCard,
-    Globe2,
     Search,
     ShieldCheck,
     Zap,
