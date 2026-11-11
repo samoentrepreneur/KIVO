@@ -1,6 +1,8 @@
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, ".env.local") });
+
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const { router: orderStreamRoute, clients } = require("./admin/routes/orderStream");
@@ -19,7 +21,6 @@ const adminOrderRoutes = require("./admin/routes/order.routes");
 const rateConversionRoutes = require("./utils/usdtohtg");
 const notificationRoutes = require("./admin/routes/notifications.routes");
 
-dotenv.config();
 const app = express();
 
 app.use(express.json());
@@ -110,11 +111,11 @@ app.use("/api/user", userAuthRoutes);
 
 app.get("/", (req, res) => res.send("Server running "));
 
-const PORT = process.env.PORT || 8000;
+const PORT = Number(process.env.PORT) || 8001;
 
 mongoose.set("strictQuery", true);
 
-mongoose.connect(process.env.MONGO_URI || process.env.MONGODB_URI, {
+mongoose.connect(process.env.MONGO_URI, {
     serverSelectionTimeoutMS: 5000
 })
     .then(async () => {
