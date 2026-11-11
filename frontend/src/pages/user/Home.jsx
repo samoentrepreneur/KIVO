@@ -137,38 +137,40 @@ export default function Home() {
                                 <span className="absolute bottom-4 left-4 font-[Manrope] text-base font-extrabold text-white sm:bottom-5 sm:left-5 sm:text-lg">Subscriptions <ArrowUpRight size={14} className="ml-1 inline" /></span>
                             </button>
                         </div>
-                        <div className="absolute -bottom-5 right-5 hidden items-center gap-2 rounded-lg border border-[#E5E7EB] bg-white px-3.5 py-2.5 shadow-[0_8px_30px_rgba(17,24,39,0.10)] dark:border-[#344054] dark:bg-[#1B2536] sm:flex">
-                            <span className="h-2 w-2 rounded-full bg-[#C8F169]" />
-                            <span className="text-xs font-semibold text-[#344054] dark:text-[#E5E7EB]">One marketplace. More possibilities.</span>
-                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Shop by category */}
+            {/* Category navigation */}
             <section className="border-y border-[#E7E9EF] bg-[#F6F7FB] dark:border-[#344054] dark:bg-[#151F2F]">
-                <div className="mx-auto max-w-[1440px] px-5 py-10 sm:px-8 lg:px-12 lg:py-12">
-                    <div className="mb-6 flex items-end justify-between">
+                <div className="mx-auto max-w-[1440px] px-5 py-10 sm:px-8 lg:px-12 lg:py-14">
+                    <div className="mb-7 flex items-end justify-between gap-4">
                         <div>
-                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#3657E8] dark:text-[#A9B8FF]">Browse KIVO</p>
-                            <h2 className="mt-1.5 font-[Manrope] text-2xl font-extrabold tracking-[-0.035em] text-[#111827] dark:text-white">Shop by category</h2>
+                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#3657E8] dark:text-[#A9B8FF]">Find your next essential</p>
+                            <h2 className="mt-1.5 font-[Manrope] text-2xl font-extrabold tracking-[-0.035em] text-[#111827] dark:text-white sm:text-3xl">Explore the marketplace</h2>
                         </div>
-                        <button type="button" onClick={() => goToSearch("digital products")} className="hidden items-center gap-1 text-sm font-semibold text-[#3657E8] hover:gap-2 sm:inline-flex dark:text-[#A9B8FF]">
-                            View all <ChevronRight size={16} />
+                        <button type="button" onClick={() => goToSearch("digital products")} className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-[#3657E8] transition hover:gap-2 dark:text-[#A9B8FF]">
+                            All services <ChevronRight size={16} />
                         </button>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-[#E2E5EC] bg-[#E2E5EC] sm:grid-cols-3 lg:grid-cols-5 dark:border-[#344054] dark:bg-[#344054]">
-                        {categories.map(({ name, detail, icon: Icon, query: categoryQuery }) => (
-                            <button key={name} type="button" onClick={() => goToSearch(categoryQuery)} className="group flex min-h-[116px] items-center gap-3 bg-white px-4 py-5 text-left transition hover:bg-[#F8F9FC] focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#3657E8] dark:bg-[#1B2536] dark:hover:bg-[#243146] sm:min-h-[130px] sm:flex-col sm:items-start sm:justify-between sm:px-5">
-                                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#F0F3FF] text-[#3657E8] transition group-hover:bg-[#3657E8] group-hover:text-white dark:bg-[#26365A] dark:text-[#A9B8FF]">
-                                    <Icon size={20} strokeWidth={1.8} />
+                    <div className="grid overflow-hidden border-y border-[#DDE1EA] dark:border-[#344054] sm:grid-cols-2 lg:grid-cols-5">
+                        {categories.map(({ name, detail, icon: Icon, query: categoryQuery }, index) => (
+                            <button
+                                key={name}
+                                type="button"
+                                onClick={() => goToSearch(categoryQuery)}
+                                className="group relative flex min-h-[104px] items-center gap-4 border-b border-[#DDE1EA] bg-transparent px-3 py-5 text-left transition hover:bg-white sm:px-5 lg:min-h-[142px] lg:flex-col lg:items-start lg:justify-between lg:border-b-0 lg:border-r lg:py-6 dark:border-[#344054] dark:hover:bg-[#1B2536] last:border-r-0"
+                            >
+                                <span className="flex w-full items-center justify-between">
+                                    <span className="font-[Manrope] text-xs font-bold tracking-[0.12em] text-[#98A2B3] dark:text-[#7F8DA3]">0{index + 1}</span>
+                                    <Icon size={20} strokeWidth={1.7} className="text-[#3657E8] transition-transform group-hover:-translate-y-0.5 dark:text-[#A9B8FF]" />
                                 </span>
-                                <span className="min-w-0">
-                                    <span className="block font-[Manrope] text-sm font-extrabold text-[#111827] dark:text-white">{name}</span>
+                                <span className="min-w-0 flex-1 lg:flex-none">
+                                    <span className="block font-[Manrope] text-base font-extrabold tracking-[-0.02em] text-[#111827] dark:text-white">{name}</span>
                                     <span className="mt-1 block text-xs text-[#7A8496] dark:text-[#A8B3C5]">{detail}</span>
                                 </span>
-                                <ArrowUpRight size={15} className="ml-auto hidden text-[#3657E8] transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 sm:block dark:text-[#A9B8FF]" />
+                                <ArrowUpRight size={16} className="shrink-0 text-[#3657E8] transition group-hover:translate-x-1 group-hover:-translate-y-1 dark:text-[#A9B8FF]" />
                             </button>
                         ))}
                     </div>
@@ -220,17 +222,19 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Future-facing services teaser; no false availability claims */}
-            <section className="mx-auto max-w-[1440px] px-5 py-14 sm:px-8 lg:px-12 lg:py-16">
-                <div className="flex flex-col justify-between gap-6 rounded-2xl bg-[#111827] px-6 py-8 text-white sm:flex-row sm:items-center sm:px-10 sm:py-10">
-                    <div className="max-w-2xl">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#C8F169]">KIVO is growing</p>
-                        <h2 className="mt-2 font-[Manrope] text-2xl font-extrabold tracking-[-0.035em] sm:text-3xl">More of your digital world. One destination.</h2>
-                        <p className="mt-3 max-w-xl text-sm leading-6 text-white/65">We’re building a broader way to access digital products and services. Explore what’s available today.</p>
+            {/* Distinct closing feature, separated from the footer */}
+            <section className="border-t border-[#DCE2F0] bg-[#E9EDFF] dark:border-[#344054] dark:bg-[#1D2A42]">
+                <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
+                    <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-center">
+                        <div className="max-w-2xl">
+                            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#3657E8] dark:text-[#C8F169]">KIVO is growing</p>
+                            <h2 className="mt-3 font-[Manrope] text-3xl font-extrabold tracking-[-0.045em] text-[#111827] dark:text-white sm:text-4xl">More of your digital world.<br className="hidden sm:block" /> One destination.</h2>
+                            <p className="mt-4 max-w-xl text-sm leading-6 text-[#586174] dark:text-[#C0CAD9]">We’re building a broader way to access digital products and services. Explore what’s available today.</p>
+                        </div>
+                        <button type="button" onClick={() => goToSearch("digital products")} className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-lg bg-[#3657E8] px-5 py-3.5 text-sm font-bold text-white transition hover:bg-[#2948D4] sm:self-auto">
+                            Explore KIVO <ArrowUpRight size={16} />
+                        </button>
                     </div>
-                    <button type="button" onClick={() => goToSearch("digital products")} className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-lg bg-[#C8F169] px-5 py-3 text-sm font-bold text-[#111827] transition hover:bg-[#D9F58D] sm:self-auto">
-                        Explore KIVO <ArrowUpRight size={16} />
-                    </button>
                 </div>
             </section>
         </main>
