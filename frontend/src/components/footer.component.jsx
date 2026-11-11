@@ -1,4 +1,3 @@
-import { ShieldCheck } from "lucide-react";
 import Logo from "../assets/logos/kivo-wordmark-white.png";
 import Whatsapp from "../assets/logos/whatsapp.png";
 import FacebookAsset from "../assets/logos/facebook.png";
@@ -67,7 +66,6 @@ export default function Footer() {
         </div>
 
         <div className="flex items-start gap-3 border-b border-white/10 py-7">
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#C8F169]/10 text-[#C8F169]"><ShieldCheck size={20} /></span>
           <div>
             <p className="text-sm font-semibold text-white">A clearer digital shopping experience</p>
             <p className="mt-1 text-xs leading-5 text-white/65">Keep your orders and digital purchases organized in one place.</p>
