@@ -9,11 +9,12 @@ const { onUserCreated } = require("../admin/controllers/stats.controller");
 const otpTemplate = require("../utils/emailTemplate/otpTemplate");
 const { Advertisement } = require("../admin/models/ad.model");
 
-// ✅ CONFIGURATION CROSS-SITE (VERCEL + RENDER)
+// Same-host HTTP development (VPS IP) uses Lax cookies; HTTPS production uses cross-site cookies.
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
 const COOKIE_OPTIONS = {
     httpOnly: true,
-    secure: true,            // Requis pour les cookies cross-site HTTPS
-    sameSite: "none",        // Autorise l'envoi de cookies entre Vercel et Render
+    secure: IS_PRODUCTION,
+    sameSite: IS_PRODUCTION ? "none" : "lax",
     maxAge: 7 * 24 * 60 * 60 * 1000,
 };
 
@@ -221,11 +222,10 @@ exports.verifyLoginOtp = async (req, res) => {
 // LOGOUT
 exports.logout = (req, res) => {
     try {
-        // Option explicite pour effacer un cookie Cross-Site
         res.clearCookie("user_access", {
             httpOnly: true,
-            secure: true,
-            sameSite: "none",
+            secure: IS_PRODUCTION,
+            sameSite: IS_PRODUCTION ? "none" : "lax",
         });
         return res.json({ success: true, message: "Logged out" });
     } catch (error) {
