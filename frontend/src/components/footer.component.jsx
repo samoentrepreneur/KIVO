@@ -1,4 +1,4 @@
-import { ArrowUpRight, Facebook, Instagram, MessageCircle, Music2, ShieldCheck, Headphones, Mail } from "lucide-react";
+import { ArrowUpRight, ShieldCheck } from "lucide-react";
 import Logo from "../assets/logos/kivo-wordmark-white.png";
 import Playstore from "../assets/logos/playstore.png";
 import Whatsapp from "../assets/logos/whatsapp.png";
@@ -60,7 +60,7 @@ export default function Footer() {
             <div className="col-span-2 sm:col-span-1">
               <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-white/50">Need help?</h3>
               <ul className="mt-5 space-y-3 text-sm text-[#C0CAD9]">
-                <li><a href="mailto:support@kivoht.com" className="inline-flex items-center gap-2 transition hover:text-[#C8F169]"><Mail size={14} /> Contact support</a></li>
+                
                 <li><a href="#" className="transition hover:text-[#C8F169]">Refund policy</a></li>
                 <li><a href="#" className="transition hover:text-[#C8F169]">Privacy policy</a></li>
                 <li><a href="#" className="transition hover:text-[#C8F169]">Terms & conditions</a></li>
@@ -77,7 +77,7 @@ export default function Footer() {
               <p className="mt-1 text-xs leading-5 text-[#8E9AAF]">Keep your orders and digital purchases organized in one place.</p>
             </div>
           </div>
-          <a href="#" className="inline-flex w-fit items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 transition hover:border-white/20 hover:bg-white/[0.08]">
+          <div className="inline-flex w-fit items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3">
             <img src={Playstore} alt="" className="h-7 w-7 object-contain" />
             <span><span className="block text-[10px] text-[#8E9AAF]">GET THE APP</span><span className="mt-0.5 block text-sm font-semibold">Google Play</span></span>
             <ArrowUpRight size={16} className="ml-2 text-[#C8F169]" />
