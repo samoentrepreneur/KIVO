@@ -2,12 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
     ArrowUpRight,
-    ChevronRight,
-    Gift,
-    Gamepad2,
     Tv,
     Smartphone,
-    CreditCard,
     Search,
     ShieldCheck,
     Zap,
@@ -17,14 +13,6 @@ import {
 import AmazonBanner from "../../assets/banners/amazon_banner.jpeg";
 import EpayBanner from "../../assets/banners/epay_banner.jpeg";
 import StreamBanner from "../../assets/banners/stream_banner.jpeg";
-
-const categories = [
-    { name: "Gift cards", detail: "Shop digital value", icon: Gift, query: "gift cards" },
-    { name: "Gaming", detail: "Games & top-ups", icon: Gamepad2, query: "gaming" },
-    { name: "Subscriptions", detail: "Stream, listen, create", icon: Tv, query: "subscriptions" },
-    { name: "Mobile top-ups", detail: "Stay connected", icon: Smartphone, query: "mobile top up" },
-    { name: "Digital payments", detail: "Payment services", icon: CreditCard, query: "digital payments" },
-];
 
 const spotlights = [
     {
