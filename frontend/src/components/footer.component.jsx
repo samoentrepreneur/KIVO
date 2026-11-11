@@ -1,126 +1,94 @@
-import { Star } from 'lucide-react';
-import Logo from '../assets/logos/kivo-wordmark-white.png'
-import Playstore from '../assets/logos/playstore.png'
-import Whatsapp from '../assets/logos/whatsapp.png'
-import Facebook from '../assets/logos/facebook.png'
-import Insta from '../assets/logos/insta.png'
-import TikTok from '../assets/logos/tiktok.png'
+import { ArrowUpRight, Facebook, Instagram, MessageCircle, Music2, ShieldCheck, Headphones, Mail } from "lucide-react";
+import Logo from "../assets/logos/kivo-wordmark-white.png";
+import Playstore from "../assets/logos/playstore.png";
+import Whatsapp from "../assets/logos/whatsapp.png";
+import FacebookAsset from "../assets/logos/facebook.png";
+import InstaAsset from "../assets/logos/insta.png";
+import TikTokAsset from "../assets/logos/tiktok.png";
+import { Link } from "react-router-dom";
 
-const socials = [
-    {
-        title: "Facebook",
-        icon: Facebook,
-        link: "https://facebook.com",
-    },
-    {
-        title: "Instagram",
-        icon: Insta,
-        link: "https://instagram.com",
-    },
-    {
-        title: "WhatsApp",
-        icon: Whatsapp,
-        link: "https://wa.me/1234567890",
-    },
-    {
-        title: "TikTok",
-        icon: TikTok,
-        link: "https://tiktok.com",
-    },
+const socialLinks = [
+  { label: "Facebook", icon: FacebookAsset, href: "https://facebook.com" },
+  { label: "Instagram", icon: InstaAsset, href: "https://instagram.com" },
+  { label: "WhatsApp", icon: Whatsapp, href: "https://wa.me/1234567890" },
+  { label: "TikTok", icon: TikTokAsset, href: "https://tiktok.com" },
 ];
 
-const SocialIcons = () => {
-    return (
-        <div className="flex items-center justify-center md:justify-start gap-4 mb-4 ">
-            {socials.map((social, index) => {
-                const Icon = social.icon;
-                return (
-                    <a
-                        key={index}
-                        href={social.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={social.title}
-                        className="
-              w-10 h-10 
-              flex items-center justify-center
-              rounded-full 
-              bg-white text-black
-              hover:bg-gray-200 
-              transition
-            "
-                    >
-                        <img src={Icon} alt={social.title} className="w-6 h-6" />
-                    </a>
-                );
-            })}
-        </div>
-    );
-};
+export default function Footer() {
+  return (
+    <footer className="relative overflow-hidden bg-[#0D1422] text-white">
+      <div className="pointer-events-none absolute -right-40 -top-48 h-[430px] w-[430px] rounded-full border border-white/[0.06]" />
+      <div className="pointer-events-none absolute -right-20 -top-28 h-[300px] w-[300px] rounded-full border border-white/[0.06]" />
 
-
-const Footer = () => {
-    return (
-        <footer className="bg-[#111827] dark:bg-gray-900 text-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-                    <div>
-                        <div className="flex items-center space-x-2 mb-4">
-                            <div className="h-8 w-32 flex items-center">
-                                <img src={Logo} alt="KIVO" className="w-full h-auto object-contain" />
-                            </div>
-                        </div>
-                        <p className="text-sm">Discover and access digital products and services.</p>
-                    </div>
-
-                    <div>
-                        <h3 className="font-semibold mb-4">Help Center</h3>
-                        <ul className="space-y-2 text-sm">
-                            <li><a href="#" className="hover:text-blue-300">Order History</a></li>
-                            <li><a href="#" className="hover:text-blue-300">Refund Policy</a></li>
-                            {/* <li><a href="#" className="hover:text-blue-300">Complaint Policy</a></li> */}
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 className="font-semibold mb-4">Want to know more?</h3>
-                        <ul className="space-y-2 text-sm">
-                            <li><a href="#" className="hover:text-blue-300">About KIVO</a></li>
-                            {/* <li><a href="https://dilip-kumar-portfolio.web.app" target='_blank' className="hover:text-blue-300">About Developer</a></li> */}
-                            {/* <li><a href="#" className="hover:text-blue-300">Earn KIVO Coins</a></li> */}
-                        </ul>
-
-                    </div>
-
-                    <div>
-                        <h3 className="font-semibold mb-4 ">Get App</h3>
-                        <div className="space-y-2">
-                            <div className="flex  items-center gap-2 bg-black rounded-lg px-3 py-2  w-fit cursor-pointer">
-                                <img src={Playstore} alt='Play store icon' className='w-7 h-7' />
-                                <span className='text-white text-sm'>Play Store</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* <div className='flex items-center gap-1 text-sm mb-4'>
-                    <span className='text-gray-400'>Developed by</span>
-                    <a href="mailto:dilipg44u@gmail.com" className='hover:underline hover:text-blue-400'>Dilip Kumar Teli</a>
-                </div> */}
-
-                <div className="border-t border-white/10 pt-8 text-xs text-blue-200">
-                    <SocialIcons />
-
-                    <div className="flex flex-col md:flex-row   gap-4 justify-between items-center">
-                        <p>Copyright © {new Date().getFullYear()} kivoht.com</p>
-                        <div className="flex gap-4">
-                            <a href="#" className="hover:text-white">Privacy Policy</a>
-                            <a href="#" className="hover:text-white">Terms & Conditions</a>
-                            {/* <a href="#" className="hover:text-white">Security</a> */}
-                        </div>
-                    </div>
-                </div>
+      <div className="mx-auto max-w-[1440px] px-5 pb-7 pt-14 sm:px-8 lg:px-12 lg:pt-[72px]">
+        <div className="grid gap-12 border-b border-white/10 pb-12 lg:grid-cols-[1.2fr_2fr] lg:gap-20">
+          <div className="max-w-sm">
+            <Link to="/" aria-label="KIVO home" className="inline-flex">
+              <img src={Logo} alt="KIVO" className="h-10 w-auto object-contain" />
+            </Link>
+            <p className="mt-5 max-w-xs text-[15px] leading-7 text-[#A8B3C5]">Your digital world, in one place. Discover digital products and services without the detours.</p>
+            <div className="mt-7 flex flex-wrap gap-2">
+              {socialLinks.map((social) => (
+                <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/[0.04] transition hover:border-[#C8F169]/50 hover:bg-white/10">
+                  <img src={social.icon} alt="" className="h-[18px] w-[18px] object-contain brightness-0 invert" />
+                </a>
+              ))}
             </div>
-        </footer>
-    )
+          </div>
+
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-white/50">Explore</h3>
+              <ul className="mt-5 space-y-3 text-sm text-[#C0CAD9]">
+                <li><Link to="/search?q=gift%20cards" className="transition hover:text-[#C8F169]">Gift cards</Link></li>
+                <li><Link to="/search?q=gaming" className="transition hover:text-[#C8F169]">Gaming</Link></li>
+                <li><Link to="/search?q=subscriptions" className="transition hover:text-[#C8F169]">Subscriptions</Link></li>
+                <li><Link to="/search?q=digital%20payments" className="transition hover:text-[#C8F169]">Digital payments</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-white/50">Your account</h3>
+              <ul className="mt-5 space-y-3 text-sm text-[#C0CAD9]">
+                <li><Link to="/auth/login" className="transition hover:text-[#C8F169]">Sign in</Link></li>
+                <li><Link to="/profile" className="transition hover:text-[#C8F169]">My account</Link></li>
+                <li><Link to="/my-orders" className="transition hover:text-[#C8F169]">Order history</Link></li>
+                <li><Link to="/cart" className="transition hover:text-[#C8F169]">Shopping cart</Link></li>
+              </ul>
+            </div>
+
+            <div className="col-span-2 sm:col-span-1">
+              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-white/50">Need help?</h3>
+              <ul className="mt-5 space-y-3 text-sm text-[#C0CAD9]">
+                <li><a href="mailto:support@kivoht.com" className="inline-flex items-center gap-2 transition hover:text-[#C8F169]"><Mail size={14} /> Contact support</a></li>
+                <li><a href="#" className="transition hover:text-[#C8F169]">Refund policy</a></li>
+                <li><a href="#" className="transition hover:text-[#C8F169]">Privacy policy</a></li>
+                <li><a href="#" className="transition hover:text-[#C8F169]">Terms & conditions</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-6 border-b border-white/10 py-7 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex max-w-lg items-start gap-3">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#C8F169]/10 text-[#C8F169]"><ShieldCheck size={20} /></span>
+            <div>
+              <p className="text-sm font-semibold text-white">A clearer digital shopping experience</p>
+              <p className="mt-1 text-xs leading-5 text-[#8E9AAF]">Keep your orders and digital purchases organized in one place.</p>
+            </div>
+          </div>
+          <a href="#" className="inline-flex w-fit items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 transition hover:border-white/20 hover:bg-white/[0.08]">
+            <img src={Playstore} alt="" className="h-7 w-7 object-contain" />
+            <span><span className="block text-[10px] text-[#8E9AAF]">GET THE APP</span><span className="mt-0.5 block text-sm font-semibold">Google Play</span></span>
+            <ArrowUpRight size={16} className="ml-2 text-[#C8F169]" />
+          </a>
+        </div>
+
+        <div className="flex flex-col gap-3 pt-6 text-xs text-[#8390A5] sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} KIVO. All rights reserved.</p>
+          <p className="tracking-wide">Your digital world, in one place.</p>
+        </div>
+      </div>
+    </footer>
+  );
 }
-export default Footer;
