@@ -27,23 +27,27 @@ app.use(express.json());
 app.use(cookieParser());
 app.set("trust proxy", 1);
 
-// Configuration CORS dynamique
-const allowedOrigins = [
+// CORS: explicitly allow the configured frontend origins on the development VPS.
+const configuredOrigins = [
     process.env.FRONTEND_URL,
-    // Temporary compatibility for the previous deployment during the KIVO migration.
-    "https://novapayht.vercel.app",
-    "http://localhost:5173",
-    "http://localhost:3000"
-].filter(Boolean);
+    ...(process.env.FRONTEND_URLS || "").split(",")
+].map(value => value.trim()).filter(Boolean);
+
+const allowedOrigins = [
+    ...configuredOrigins,
+    "http://212.56.46.39:5173",
+    "http://212.56.46.39:4173"
+];
 
 app.use(cors({
     origin: function (origin, callback) {
-        // Autorise les requêtes sans origine (ex: Postman, apps mobiles) ou présentes dans la liste
+        // Requests without an Origin header (health checks, CLI tools) are allowed.
         if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error("Bloqué par la politique CORS"));
+            return callback(null, true);
         }
+
+        console.warn(`CORS blocked origin: ${origin}`);
+        return callback(new Error("Bloqué par la politique CORS"));
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
