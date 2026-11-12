@@ -77,10 +77,13 @@ const Register = () => {
                 { withCredentials: true }
             );
 
-            if (res.data.success) {
+            if (res.data.success && res.data.requiresOtp) {
                 setShowOtpModal(true);
-               toast.success("Registered successfully! OTP sent to email.");
-
+                toast.success("Registration successful! Check your email for the OTP.");
+            } else if (res.data.success) {
+                await fetchMe();
+                toast.success("Account created successfully!");
+                navigate("/");
             }
         } catch (err) {
             // console.error(err);
