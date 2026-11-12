@@ -69,10 +69,18 @@ const AdminLogin = () => {
                 setForm(prev => ({ ...prev, password: "" }));
                 toast.success("OTP Sent to Email");
             } else if (res.data?.success) {
+                // Confirm the cookie-backed session before leaving the login page.
+                const authenticatedAdmin = await fetchMe();
+
+                if (!authenticatedAdmin) {
+                    throw new Error("Session could not be established. Please try again.");
+                }
+
                 localStorage.setItem("admin-auth", "true");
-                await fetchMe();
                 toast.success("Admin login successful");
-                navigate("/admin/dashboard");
+
+                // Reload once so the protected admin routes initialize from the new session.
+                window.location.replace("/admin/dashboard");
             }
 
         } catch (err) {
