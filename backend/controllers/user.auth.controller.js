@@ -60,6 +60,59 @@ const completeLogin = (user, res) => {
 exports.register = async (req, res) => {
     try {
         const { fullName, phone, email, password } = req.body;
+        const emailOtpEnabled = process.env.EMAIL_OTP_ENABLED === "true";
+
+        if (!fullName || !phone || !email || !password)
+            return res.status(400).json({ message: "All fields are required" });
+
+        let user = await User.findOne({ email: email.trim().toLowerCase() });
+
+        if (user && user.isVerified)
+            return res.status(400).json({ message: "Email already exists" });
+
+        if (user) {
+            user.fullName = fullName.trim();
+            user.phone = phone;
+            user.password = await bcrypt.hash(password, 10);
+        } else {
+            user = new User({
+                fullName: fullName.trim(),
+                phone,
+                email: email.trim().toLowerCase(),
+                password: await bcrypt.hash(password, 10),
+            });
+        }
+
+        if (emailOtpEnabled) {
+            const otp = await createOtpForUser(user, 2);
+            await sendOtpEmail(user.email, otp, "Verify your email", 2);
+
+            return res.json({
+                success: true,
+                requiresOtp: true,
+                message: "Registration successful. Verify your email with the OTP.",
+            });
+        }
+
+        // OTP disabled: verify the account immediately and establish the session.
+        user.isVerified = true;
+        user.otp = null;
+        user.otpExpires = null;
+        await user.save();
+
+        if (user.isNew) {
+            await onUserCreated();
+        }
+
+        return completeLogin(user, res);
+
+    } catch (error) {
+        console.error("[AUTH][REGISTER]", error);
+        return res.status(500).json({ message: "Registration failed. Please try again." });
+    }
+};
+    try {
+        const { fullName, phone, email, password } = req.body;
 
         if (!fullName || !phone || !email || !password)
             return res.status(400).json({ message: "All fields are required" });
@@ -175,6 +228,12 @@ exports.loginRequest = async (req, res) => {
         if (!match)
             return res.status(400).json({ message: "Invalid credentials" });
 
+        if (process.env.EMAIL_OTP_ENABLED !== "true") {
+            user.lastActive = Date.now();
+            await user.save();
+            return completeLogin(user, res);
+        }
+
         const otp = await createOtpForUser(user, 10);
 
         await sendEmail({
@@ -190,8 +249,8 @@ exports.loginRequest = async (req, res) => {
         });
 
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Server error" });
+        console.error("[AUTH][LOGIN]", error);
+        return res.status(500).json({ message: "Login failed. Please try again." });
     }
 };
 
