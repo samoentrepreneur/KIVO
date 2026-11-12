@@ -61,13 +61,18 @@ const AdminLogin = () => {
             const res = await api.post("/admin/login", form);
             // console.log(res);
 
-            if (res.data?.success) {
+            if (res.data?.success && res.data.requiresOtp) {
                 setOtp(["", "", "", "", "", ""]);
                 setShowOtpModal(true);
                 setTimer(120);
                 setCanResend(false);
                 setForm(prev => ({ ...prev, password: "" }));
                 toast.success("OTP Sent to Email");
+            } else if (res.data?.success) {
+                localStorage.setItem("admin-auth", "true");
+                await fetchMe();
+                toast.success("Admin login successful");
+                navigate("/admin/dashboard");
             }
 
         } catch (err) {
