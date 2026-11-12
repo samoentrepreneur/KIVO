@@ -84,6 +84,50 @@ const loginAdmin = async (req, res) => {
         admin.failedLoginAttempts = 0;
         admin.lockUntil = null;
 
+        admin.lastActivity = Date.now();
+
+        // Reuse the global OTP switch: when disabled, issue the admin session directly.
+        if (process.env.EMAIL_OTP_ENABLED !== "true") {
+            admin.otp = null;
+            admin.otpExpires = null;
+            await admin.save();
+
+            const access = generateAccessToken(admin);
+            const refresh = generateRefreshToken(admin, {
+                remember: true,
+                deviceId: req.headers["user-agent"]
+            });
+
+            res.cookie("admin_access", access, {
+                ...COOKIE_OPTIONS,
+                maxAge: 60 * 60 * 1000
+            });
+
+            res.cookie("admin_refresh", refresh, {
+                ...COOKIE_OPTIONS,
+                maxAge: 7 * 24 * 60 * 60 * 1000
+            });
+
+            await AdminActivityLog.create({
+                adminId: admin._id,
+                action: "Admin logged in",
+                ip: req.ip,
+                userAgent: req.headers["user-agent"]
+            });
+
+            return res.json({
+                success: true,
+                requiresOtp: false,
+                message: "Admin login successful",
+                admin: {
+                    id: admin._id,
+                    name: admin.name,
+                    email: admin.email,
+                    role: admin.role
+                }
+            });
+        }
+
         const otp = generateOtp();
         admin.otp = otp;
         admin.otpExpires = Date.now() + 2 * 60000;
@@ -95,9 +139,9 @@ const loginAdmin = async (req, res) => {
             html: otpTemplate({ otp, name: admin.name })
         });
 
-        return res.json({ success: true, message: "OTP sent" });
+        return res.json({ success: true, requiresOtp: true, message: "OTP sent" });
     } catch (err) {
-        console.error("Login Error:", err);
+        console.error("[ADMIN AUTH][LOGIN]", err);
         return res.status(500).json({ message: "Server error" });
     }
 };
