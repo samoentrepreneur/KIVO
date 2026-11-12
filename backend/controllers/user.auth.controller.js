@@ -100,9 +100,7 @@ exports.register = async (req, res) => {
         user.otpExpires = null;
         await user.save();
 
-        if (user.isNew) {
-            await onUserCreated();
-        }
+        await onUserCreated();
 
         return completeLogin(user, res);
 
