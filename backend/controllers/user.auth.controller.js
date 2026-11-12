@@ -109,50 +109,6 @@ exports.register = async (req, res) => {
         return res.status(500).json({ message: "Registration failed. Please try again." });
     }
 };
-    try {
-        const { fullName, phone, email, password } = req.body;
-
-        if (!fullName || !phone || !email || !password)
-            return res.status(400).json({ message: "All fields are required" });
-
-        let user = await User.findOne({ email });
-
-        if (user && user.isVerified)
-            return res.status(400).json({ message: "Email already exists" });
-
-        if (user && !user.isVerified) {
-            const otp = await createOtpForUser(user, 2);
-
-            user.fullName = fullName;
-            user.phone = phone;
-            user.password = await bcrypt.hash(password, 10);
-            await user.save();
-
-            await sendOtpEmail(email, otp, "Verify your email", 2);
-
-            return res.json({
-                success: true,
-                message: "User exists but not verified. New OTP sent.",
-            });
-        }
-
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = await User.create({
-            fullName,
-            phone,
-            email,
-            password: hashedPassword,
-        });
-
-        const otp = await createOtpForUser(newUser, 2);
-        await sendOtpEmail(email, otp, "Verify your email", 2);
-
-        return res.json({ success: true, message: "Registered. OTP sent." });
-
-    } catch (error) {
-        return res.status(500).json({ message: "Server error", error });
-    }
-};
 
 // VERIFY REGISTER OTP
 exports.verifyOtp = async (req, res) => {
