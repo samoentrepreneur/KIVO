@@ -11,15 +11,20 @@ export const AuthProvider = ({ children }) => {
     const fetchMe = useCallback(async () => {
         try {
             const res = await api.get("/admin/me")
-            if (res.data.success) {
-                setAdmin({
+            if (res.data.success && res.data.admin) {
+                const authenticatedAdmin = {
                     ...res.data.admin,
                     expiresAt: res.data.expiresAt
-                });
+                };
+                setAdmin(authenticatedAdmin);
+                return authenticatedAdmin;
             }
-              
+
+            setAdmin(null);
+            return null;
         } catch(err) {
             setAdmin(null);
+            return null;
         } finally {
             setLoading(false);
         }
