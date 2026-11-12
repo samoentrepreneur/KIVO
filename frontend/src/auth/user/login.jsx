@@ -75,6 +75,7 @@ const Login = () => {
                 return;
             }
 
+            await fetchMe();
             toast.success("Logged in successfully!");
             navigate("/");
 
