@@ -52,7 +52,8 @@ const orderSchema = new mongoose.Schema(
         transactionId: String,
 
         paymentScreenshotUrl: String,
-        paymentScreenshotPublicId: String,
+        paymentScreenshotPublicId: String, // Legacy Cloudinary identifier
+        paymentScreenshotPath: String, // Supabase Storage object path
 
         // Customer Info
         fullName: String,
