@@ -1,7 +1,7 @@
 const Order = require("../models/order");
-const cloudinary = require("../config/cloudinary");
 const fs = require("fs");
 const { onOrderCompleted, onOrderCancelled } = require("../admin/controllers/stats.controller");
+const { uploadOrderScreenshot } = require("../services/storage.service");
 const sendEmail = require("../utils/sendEmail");
 const orderReceivedTemplate = require("../utils/emailTemplate/orderRecievedTemplate");
 const { Admin } = require("../admin/models/admin.model");
@@ -14,6 +14,7 @@ const orderCompletedTemplate = require("../utils/emailTemplate/orderCompletedEma
 const adminOrderCancelledByUserTemplate = require("../utils/emailTemplate/notifyOrderCancellationToAdmin");
 
 exports.createOrder = async (req, res) => {
+    let uploadedTempPath = null;
     try {
         const {
             fullName,
@@ -41,16 +42,13 @@ exports.createOrder = async (req, res) => {
         } = req.body;
 
         let screenshotUrl = null;
-        let screenshotPublicId = null;
+        let screenshotPath = null;
 
         if (req.file) {
-            const upload = await cloudinary.uploader.upload(req.file.path, {
-                folder: "easypay/orders",
-            });
-
-            screenshotUrl = upload.secure_url;
-            screenshotPublicId = upload.public_id;
-            fs.unlinkSync(req.file.path);
+            uploadedTempPath = req.file.path;
+            const upload = await uploadOrderScreenshot(req.file, `order-${Date.now()}`);
+            screenshotUrl = upload.imageUrl;
+            screenshotPath = upload.imagePath;
         }
         const admins = await Admin.find().select("email -_id").lean();
         const adminEmails = admins.map(admin => admin.email);
@@ -96,7 +94,7 @@ exports.createOrder = async (req, res) => {
             paymentPhone,
             transactionId,
             paymentScreenshotUrl: screenshotUrl,
-            paymentScreenshotPublicId: screenshotPublicId,
+            paymentScreenshotPath: screenshotPath,
 
             fullName,
             email,
@@ -179,6 +177,10 @@ exports.createOrder = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).json({ success: false, message: "Server error" });
+    } finally {
+        if (uploadedTempPath) {
+            await fs.promises.unlink(uploadedTempPath).catch(() => {});
+        }
     }
 };
 
