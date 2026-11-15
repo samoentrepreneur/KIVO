@@ -1,5 +1,4 @@
 const fs = require("fs/promises");
-const path = require("path");
 const { randomUUID } = require("crypto");
 
 const BUCKET = process.env.SUPABASE_STORAGE_BUCKET || "kivo-assets";
