@@ -67,6 +67,31 @@ async function uploadProductImage(file, productId) {
     return { imageUrl: publicUrl, imagePath: objectPath };
 }
 
+async function uploadOrderScreenshot(file, orderId) {
+    if (!file?.path) throw new Error("Payment screenshot is missing.");
+
+    const extension = MIME_EXTENSIONS[file.mimetype];
+    if (!extension) throw new Error("Unsupported image type.");
+
+    const objectPath = `orders/${String(orderId).replace(/[^a-zA-Z0-9_-]/g, "_")}/${randomUUID()}.${extension}`;
+    const fileBuffer = await fs.readFile(file.path);
+
+    await storageRequest(`/object/${encodeURIComponent(BUCKET)}/${objectPath.split("/").map(encodeURIComponent).join("/")}`, {
+        method: "POST",
+        body: fileBuffer,
+        headers: {
+            "Content-Type": file.mimetype,
+            "Cache-Control": "max-age=3600",
+            "x-upsert": "false"
+        }
+    });
+
+    const { url } = getConfig();
+    const publicUrl = `${url}/storage/v1/object/public/${encodeURIComponent(BUCKET)}/${objectPath.split("/").map(encodeURIComponent).join("/")}`;
+
+    return { imageUrl: publicUrl, imagePath: objectPath };
+}
+
 async function deleteStorageImage(objectPath) {
     if (!objectPath) return;
 
@@ -76,4 +101,4 @@ async function deleteStorageImage(objectPath) {
     });
 }
 
-module.exports = { uploadProductImage, deleteStorageImage };
+module.exports = { uploadProductImage, uploadOrderScreenshot, deleteStorageImage };
