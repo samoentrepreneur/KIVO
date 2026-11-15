@@ -1,7 +1,6 @@
 const Product = require("../../models/product");
-const { v2: cloudinary } = require("cloudinary");
 const fs = require("fs");
-const product = require("../../models/product");
+const { uploadProductImage, deleteStorageImage } = require("../../services/storage.service");
 
 
 exports.getProductsByCategory = async (req, res) => {
@@ -108,8 +107,10 @@ exports.deleteProduct = async (req, res) => {
             return res.status(404).json({ success: false, message: "Product not found" });
         }
 
-        if (product.imagePublicId) {
-            await cloudinary.uploader.destroy(product.imagePublicId).catch(() => { });
+        if (product.imagePath) {
+            await deleteStorageImage(product.imagePath).catch(err =>
+                console.error("Supabase image cleanup failed:", err.message)
+            );
         }
 
         await Product.findByIdAndDelete(id);
@@ -124,6 +125,9 @@ exports.deleteProduct = async (req, res) => {
 
 
 exports.updateProductImage = async (req, res) => {
+    let uploadedTempPath = null;
+    let newImagePath = null;
+
     try {
         const { productId } = req.body;
 
@@ -131,38 +135,48 @@ exports.updateProductImage = async (req, res) => {
             return res.status(400).json({ success: false, message: "Image is required" });
         }
 
+        uploadedTempPath = req.file.path;
         const product = await Product.findById(productId);
+
         if (!product) {
-            fs.unlinkSync(req.file.path);
             return res.status(404).json({ success: false, message: "Product not found" });
         }
 
-        // upload file PATH (string ✅)
-        const uploadResponse = await cloudinary.uploader.upload(req.file.path, {
-            folder: "easypay/products",
-        });
+        const uploaded = await uploadProductImage(req.file, productId);
+        newImagePath = uploaded.imagePath;
 
-        // delete old image
-        if (product.imagePublicId) {
-            await cloudinary.uploader.destroy(product.imagePublicId);
-        }
-
-        product.image = uploadResponse.secure_url;
-        product.imagePublicId = uploadResponse.public_id;
+        const previousImagePath = product.imagePath;
+        product.image = uploaded.imageUrl;
+        product.imagePath = uploaded.imagePath;
         await product.save();
 
-        // remove temp file
-        fs.unlinkSync(req.file.path);
+        newImagePath = null;
+
+        if (previousImagePath) {
+            await deleteStorageImage(previousImagePath).catch(err =>
+                console.error("Previous Supabase image cleanup failed:", err.message)
+            );
+        }
 
         return res.status(200).json({
             success: true,
             message: "Product image updated successfully",
             imageUrl: product.image,
-            product: product,
+            product
         });
     } catch (error) {
+        if (newImagePath) {
+            await deleteStorageImage(newImagePath).catch(cleanupError =>
+                console.error("Supabase image rollback failed:", cleanupError.message)
+            );
+        }
+
         console.error("Image Update Error:", error);
         return res.status(500).json({ success: false, message: "Failed to update product image" });
+    } finally {
+        if (uploadedTempPath) {
+            await fs.promises.unlink(uploadedTempPath).catch(() => {});
+        }
     }
 };
 
