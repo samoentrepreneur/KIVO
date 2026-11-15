@@ -71,7 +71,8 @@ const productSchema = new mongoose.Schema({
     currency: { type: String, required: true },
 
     image: String,
-    imagePublicId: String,
+    imagePath: String, // Supabase Storage object path
+    imagePublicId: String, // Legacy Cloudinary identifier; retained for existing records
 
     variants: {
         type: [variantSchema],
